@@ -1,13 +1,13 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 from os import urandom
 from pymongo import MongoClient
-from config import password
+from config import password, username
 
 
 app = Flask(__name__)
 app.secret_key = urandom(24)
 
-client = MongoClient(f"mongodb+srv://flaskAdmin:{password}@cluster0.8ejth.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+client = MongoClient(f"mongodb+srv://{username}:{password}@cluster0.8ejth.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 db = client.get_database('coding-bubble')
 records = db.admin
 resource_collection = db.resource_collection
